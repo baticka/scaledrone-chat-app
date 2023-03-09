@@ -1,0 +1,10 @@
+/* MIXINS */
+@mixin isFlexColumn {
+	display: flex;
+	flex-direction: column;
+}
+
+@mixin isMessage {
+	padding: 10px 25px;
+	border-radius: 7px 7px 0;
+}
