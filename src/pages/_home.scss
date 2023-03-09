@@ -1,0 +1,66 @@
+/* HOMEPAGE */
+div.app-container {
+	@include isFlexColumn;
+
+	justify-content: space-between;
+	width: 95vw;
+	min-height: 95vh;
+	height: 100%;
+
+	padding: 20px;
+	margin: 25px auto;
+	border-radius: 25px;
+	border: 2px solid $color-gray;
+
+	div.members {
+		margin-bottom: 10px;
+		color: $color-darkgray;
+	}
+
+	div.members-list {
+		display: flex;
+
+		& div:after {
+			content: ',';
+			padding-right: 5px;
+		}
+
+		& div:last-child:after {
+			content: '';
+			padding-right: 0;
+		}
+	}
+
+	div.message-container {
+		& div {
+			@include isFlexColumn;
+			gap: 5px;
+		}
+	}
+}
+
+hr {
+	margin: 20px 0;
+	border: none;
+	border-bottom: 1px solid $color-gray;
+}
+
+.message-start {
+	align-items: flex-start;
+	margin-top: 25px;
+
+	& div:nth-child(2) {
+		@include isMessage;
+		background-color: $color-lightgray;
+	}
+}
+
+.message-end {
+	align-items: flex-end;
+	margin-top: 25px;
+
+	& div:nth-child(2) {
+		@include isMessage;
+		background-color: $color-blue;
+	}
+}
