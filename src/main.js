@@ -5,48 +5,42 @@ const messageContainer = document.querySelector('.message-container'),
 	messageFormButton = document.querySelector('.message-form__button');
 
 let messageInput = document.querySelector('.message-form__input'),
-	members = [];
+	members = [],
+	firstName = [
+		'Donald',
+		'Mickey',
+		'Minnie',
+		'Pluto',
+		'Daisy',
+		'Goofy',
+		'Scrooge',
+		'Moby',
+	],
+	lastName = [
+		'Duck',
+		'Mouse',
+		'Frog',
+		'McQuack',
+		'Goof',
+		'McDuck',
+		'Vanderquack',
+		'Pistoles',
+	];
 
-/* Assign random name to each member */
-const getMemberName = () => {
-	const firstName = [
-			'Donald',
-			'Mickey',
-			'Minnie',
-			'Pluto',
-			'Daisy',
-			'Goofy',
-			'Scrooge',
-			'Moby',
-		],
-		lastName = [
-			'Duck',
-			'Mouse',
-			'Frog',
-			'McQuack',
-			'Goof',
-			'McDuck',
-			'Vanderquack',
-			'Pistoles',
-		];
-
-	const randomizeFirstName =
-			firstName[Math.floor(Math.random() * firstName.length)],
-		randomizeLasttName =
-			lastName[Math.floor(Math.random() * lastName.length)];
-
-	let assignName = `${randomizeFirstName} ${randomizeLasttName}`;
-	return assignName;
+const getRandomInt = () => {
+	return Math.floor(Math.random() * elementValue);
 };
 
-/* Assign random color to each member name */
-const getMemberColor = () => {
-	function getRandomInt() {
-		return Math.floor(Math.random() * 256);
-	}
+/* Get random name for each member */
+const getMemberName = () => {
+	elementValue = firstName.length;
+	return `${firstName[getRandomInt()]} ${lastName[getRandomInt()]}`;
+};
 
-	let color = `rgb(${getRandomInt()}, ${getRandomInt()}, ${getRandomInt()})`;
-	return color;
+/* Get random color for each member name */
+const getMemberColor = () => {
+	elementValue = 256;
+	return `rgb(${getRandomInt()}, ${getRandomInt()}, ${getRandomInt()})`;
 };
 
 const drone = new Scaledrone('USZQvKl3q84qn0Yy', {
@@ -100,13 +94,13 @@ drone.on('open', (error) => {
 
 const sendMessage = () => {
 	const messageText = messageInput.value;
-
-	/* observable-room - listen to members join and leave chat */
-	drone.publish({
-		room: 'observable-room',
-		message: messageText,
-	});
-
+	if (messageText) {
+		/* observable-room - listen to members join and leave chat */
+		drone.publish({
+			room: 'observable-room',
+			message: messageText,
+		});
+	}
 	messageInput.value = '';
 };
 messageFormButton.addEventListener('click', sendMessage);
