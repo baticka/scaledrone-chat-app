@@ -53,13 +53,13 @@ const drone = new Scaledrone('USZQvKl3q84qn0Yy', {
 /* Start scaledrone and open chat room */
 drone.on('open', (error) => {
 	if (error) {
-		return console.error(error);
+		alert('Something went wrong, try again');
 	}
 
 	const room = drone.subscribe('observable-room');
 	room.on('open', function (error) {
 		if (error) {
-			return console.error(error);
+			alert('Something went wrong, try again');
 		}
 	});
 
