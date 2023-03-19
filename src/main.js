@@ -28,18 +28,18 @@ let messageInput = document.querySelector('.message-form__input'),
 	];
 
 const getRandomInt = () => {
-	return Math.floor(Math.random() * elementValue);
+	return Math.floor(Math.random() * element);
 };
 
 /* Get random name for each member */
 const getMemberName = () => {
-	elementValue = firstName.length;
+	element = firstName.length;
 	return `${firstName[getRandomInt()]} ${lastName[getRandomInt()]}`;
 };
 
 /* Get random color for each member name */
 const getMemberColor = () => {
-	elementValue = 256;
+	element = 256;
 	return `rgb(${getRandomInt()}, ${getRandomInt()}, ${getRandomInt()})`;
 };
 
@@ -71,10 +71,7 @@ drone.on('open', (error) => {
 
 	/* Display members + messages respectively on enter or button click */
 	room.on('message', (message) => {
-		const messageText = message.data,
-			messageMember = message.member;
-
-		createMessageElement(messageText, messageMember);
+		createMessageElement(message.data, message.member);
 	});
 
 	/* If chat opened in more than 2 windows update array with +1 member for each window */
@@ -93,24 +90,22 @@ drone.on('open', (error) => {
 });
 
 const sendMessage = () => {
-	const messageText = messageInput.value;
-	if (messageText) {
+	if (messageInput.value) {
 		/* observable-room - listen to members join and leave chat */
 		drone.publish({
 			room: 'observable-room',
-			message: messageText,
+			message: messageInput.value,
 		});
 	}
 	messageInput.value = '';
 };
 messageFormButton.addEventListener('click', sendMessage);
 
-/* Fetch name from "assignName" variable, compare it with
+/* Fetch inital assigned member name, compare it with
 	memeber who sent a message and if the same add class
 	to move parent div to the end of the window
 */
 const getMessageMemberName = () => {
-	const memeberName = drone.args[1].data.name;
 	let nameContainerElParent = document.querySelectorAll(
 			'.message-container > div'
 		),
@@ -124,7 +119,7 @@ const getMessageMemberName = () => {
 			nameContainerText = nameContainerElement[index].innerText;
 
 		if (nameContainerText) {
-			nameContainer.innerHTML == memeberName
+			nameContainer.innerHTML == drone.args[1].data.name
 				? nameContainerParent.classList.add('message-end')
 				: nameContainerParent.classList.add('message-start');
 		}
@@ -141,11 +136,10 @@ const updateMembers = () => {
 
 /* Create new member and assign color to name */
 const createMemberElement = (member) => {
-	const getMember = member.clientData,
-		createDiv = document.createElement('div');
+	const createDiv = document.createElement('div');
 
-	createDiv.innerText = getMember.name;
-	createDiv.style.color = getMember.color;
+	createDiv.innerText = member.clientData.name;
+	createDiv.style.color = member.clientData.color;
 
 	return createDiv;
 };
