@@ -43,7 +43,7 @@ const getMemberColor = () => {
 	return `rgb(${getRandomInt()}, ${getRandomInt()}, ${getRandomInt()})`;
 };
 
-const drone = new Scaledrone('USZQvKl3q84qn0Yy', {
+const drone = new Scaledrone(process.env.SECRET_KEY, {
 	data: {
 		name: getMemberName(),
 		color: getMemberColor(),
