@@ -119,12 +119,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"main.js":[function(require,module,exports) {
 /* Global variables */
-var messageContainer = document.querySelector('.message-container'),
-  membersList = document.querySelector('.members-list'),
-  messageForm = document.querySelector('form'),
-  messageFormButton = document.querySelector('.message-form__button');
-var messageInput = document.querySelector('.message-form__input'),
-  members = [],
+var messageContainer = document.querySelector('.message-container');
+var membersList = document.querySelector('.members-list');
+var messageForm = document.querySelector('form');
+var messageFormButton = document.querySelector('.message-form__button');
+var messageInput = document.querySelector('.message-form__input');
+var members = [],
   firstName = ['Donald', 'Mickey', 'Minnie', 'Pluto', 'Daisy', 'Goofy', 'Scrooge', 'Moby'],
   lastName = ['Duck', 'Mouse', 'Frog', 'McQuack', 'Goof', 'McDuck', 'Vanderquack', 'Pistoles'];
 var getRandomInt = function getRandomInt() {
@@ -205,12 +205,12 @@ messageFormButton.addEventListener('click', sendMessage);
 	to move parent div to the end of the window
 */
 var getMessageMemberName = function getMessageMemberName() {
-  var nameContainerElParent = document.querySelectorAll('.message-container > div'),
-    nameContainerElement = document.querySelectorAll('.message-container > div > div:nth-child(1)');
+  var nameContainerElParent = document.querySelectorAll('.message-container > div');
+  var nameContainerElement = document.querySelectorAll('.message-container > div > div:nth-child(1)');
   for (var index = 0; index < nameContainerElement.length; index++) {
-    var nameContainerParent = nameContainerElParent[index],
-      nameContainer = nameContainerElement[index],
-      nameContainerText = nameContainerElement[index].innerText;
+    var nameContainerParent = nameContainerElParent[index];
+    var nameContainer = nameContainerElement[index];
+    var nameContainerText = nameContainerElement[index].innerText;
     if (nameContainerText) {
       nameContainer.innerHTML == drone.args[1].data.name ? nameContainerParent.classList.add('message-end') : nameContainerParent.classList.add('message-start');
     }
@@ -269,7 +269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60740" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49462" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
