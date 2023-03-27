@@ -1,11 +1,11 @@
 /* Global variables */
-const messageContainer = document.querySelector('.message-container'),
-	membersList = document.querySelector('.members-list'),
-	messageForm = document.querySelector('form'),
-	messageFormButton = document.querySelector('.message-form__button');
+const messageContainer = document.querySelector('.message-container');
+const membersList = document.querySelector('.members-list');
+const messageForm = document.querySelector('form');
+const messageFormButton = document.querySelector('.message-form__button');
 
-let messageInput = document.querySelector('.message-form__input'),
-	members = [],
+let messageInput = document.querySelector('.message-form__input');
+let members = [],
 	firstName = [
 		'Donald',
 		'Mickey',
@@ -107,16 +107,16 @@ messageFormButton.addEventListener('click', sendMessage);
 */
 const getMessageMemberName = () => {
 	let nameContainerElParent = document.querySelectorAll(
-			'.message-container > div'
-		),
-		nameContainerElement = document.querySelectorAll(
-			'.message-container > div > div:nth-child(1)'
-		);
+		'.message-container > div'
+	);
+	let nameContainerElement = document.querySelectorAll(
+		'.message-container > div > div:nth-child(1)'
+	);
 
 	for (let index = 0; index < nameContainerElement.length; index++) {
-		const nameContainerParent = nameContainerElParent[index],
-			nameContainer = nameContainerElement[index],
-			nameContainerText = nameContainerElement[index].innerText;
+		const nameContainerParent = nameContainerElParent[index];
+		const nameContainer = nameContainerElement[index];
+		const nameContainerText = nameContainerElement[index].innerText;
 
 		if (nameContainerText) {
 			nameContainer.innerHTML == drone.args[1].data.name
