@@ -90,14 +90,25 @@ drone.on('open', (error) => {
 });
 
 const sendMessage = () => {
-	if (messageInput.value) {
-		/* observable-room - listen to members join and leave chat */
-		drone.publish({
-			room: 'observable-room',
-			message: messageInput.value,
-		});
+	const regExp = new RegExp('^[^\S.*$0-9A-Za-z]+$');
+	if (regExp.test(messageInput.value)) {
+		alert(
+			'Type something, blank message is no fun'
+		);
+	} else {
+		if (messageInput.value) {
+			/* observable-room - listen to members join and leave chat */
+			drone.publish({
+				room: 'observable-room',
+				message: messageInput.value,
+			});
+		} else {
+			alert(
+				'Type something, blank message is no fun'
+			);
+		}
+		messageInput.value = '';
 	}
-	messageInput.value = '';
 };
 messageFormButton.addEventListener('click', sendMessage);
 
