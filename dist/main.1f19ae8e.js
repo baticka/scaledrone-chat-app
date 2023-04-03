@@ -189,14 +189,21 @@ drone.on('open', function (error) {
   });
 });
 var sendMessage = function sendMessage() {
-  if (messageInput.value) {
-    /* observable-room - listen to members join and leave chat */
-    drone.publish({
-      room: 'observable-room',
-      message: messageInput.value
-    });
+  var regExp = new RegExp('^[^\S.*$0-9A-Za-z]+$');
+  if (regExp.test(messageInput.value)) {
+    alert('Type something, blank message is no fun');
+  } else {
+    if (messageInput.value) {
+      /* observable-room - listen to members join and leave chat */
+      drone.publish({
+        room: 'observable-room',
+        message: messageInput.value
+      });
+    } else {
+      alert('Type something, blank message is no fun');
+    }
+    messageInput.value = '';
   }
-  messageInput.value = '';
 };
 messageFormButton.addEventListener('click', sendMessage);
 
@@ -269,7 +276,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49462" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59713" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
