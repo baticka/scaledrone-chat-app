@@ -5,8 +5,8 @@ const messageForm = document.querySelector('form');
 const messageFormButton = document.querySelector('.message-form__button');
 
 let messageInput = document.querySelector('.message-form__input');
-let members = [],
-	firstName = [
+let members = [];
+const firstName = [
 		'Donald',
 		'Mickey',
 		'Minnie',
@@ -15,8 +15,8 @@ let members = [],
 		'Goofy',
 		'Scrooge',
 		'Moby',
-	],
-	lastName = [
+	];
+const lastName = [
 		'Duck',
 		'Mouse',
 		'Frog',
@@ -43,7 +43,7 @@ const getMemberColor = () => {
 	return `rgb(${getRandomInt()}, ${getRandomInt()}, ${getRandomInt()})`;
 };
 
-const drone = new Scaledrone(process.env.SECRET_KEY, {
+const drone = new Scaledrone('USZQvKl3q84qn0Yy', {
 	data: {
 		name: getMemberName(),
 		color: getMemberColor(),
